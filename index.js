@@ -126,7 +126,7 @@ window.onload = function() {
         function checkInputs() {
           if (
             join_input.value.length > 4 &&
-            password_input.value === '1class1voice'
+            password_input.value === 'josephisabigblackmonkey'
           ) {
             join_button.classList.add('enabled');
             join_button.onclick = function () {
