@@ -237,6 +237,13 @@ window.onload = function() {
             chat_input_send.classList.remove('enabled')
           }
         }
+        // Add an event listener for the Enter key press
+        chat_input.addEventListener('keypress', function(event) {
+          if (event.key === 'Enter' && chat_input_send.classList.contains('enabled')) {
+            chat_input_send.click(); // Trigger the send button's click event
+          }
+        });
+  
 
   
         var chat_logout_container = document.createElement('div')
@@ -273,9 +280,20 @@ window.onload = function() {
         var message = data.message;
         var timestamp = data.timestamp; // Get the timestamp from the message data
         var isCurrentUser = name === parent.get_name(); // Check if the message is sent by the current user
-      
+        var isLatestMessage = timestamp === latestMessage.timestamp; // Check if this message is the latest
+
+
         var message_container = document.createElement('div');
-        message_container.setAttribute('class', `message_container ${isCurrentUser ? 'sent' : 'received'}`);
+        message_container.setAttribute('class', `message_container ${isCurrentUser ? 'sent' : 'received'}'`);
+        var prevTimestamp = index > 0 ? ordered[index - 1].timestamp : null;
+
+        // Add 'highlighted-message' class to the most recent message
+        if (prevTimestamp !== null && timestamp > prevTimestamp) {
+          message_container.classList.add('message_container', 'highlighted-message');
+        } else {
+          message_container.classList.add('message_container');
+        }
+
       
         var message_inner_container = document.createElement('div');
         message_inner_container.setAttribute('class', 'message_inner_container');
@@ -320,6 +338,35 @@ window.onload = function() {
         var formattedTime = hours + ':' + minutes + ' ' + ampm;
         return formattedTime;
       }
+
+      // Find the latest message by comparing timestamps
+      function findLatestMessage(messages) {
+        if (messages.length === 0) {
+          return null; // No messages
+        }
+
+        let latestMessage = messages[0]; // Initialize with the first message
+        for (let i = 1; i < messages.length; i++) {
+          if (messages[i].timestamp > latestMessage.timestamp) {
+            latestMessage = messages[i];
+          }
+        }
+        return latestMessage;
+      }
+
+      // Call the function to get the latest message
+      const latestMessage = findLatestMessage(ordered);
+
+      // Now you have the latestMessage object, you can use it to determine the latest message's timestamp and other properties.
+      if (latestMessage) {
+        const latestTimestamp = latestMessage.timestamp;
+        const latestSender = latestMessage.name;
+        const latestContent = latestMessage.message;
+        console.log(`Latest message: ${latestSender} - ${latestContent} - Timestamp: ${latestTimestamp}`);
+      } else {
+        console.log('No messages available.');
+      }
+
       
     
       // Go to the recent message at the bottom of the container
