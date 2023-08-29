@@ -338,7 +338,7 @@ body {
     max-height: 800px; /* Adjust the height as needed */
     overflow-y: auto;
     scroll-behavior: smooth; /* Enable smooth scrolling */
-
+  opacity: 100px;
 }
 
 #chat_input_container {
