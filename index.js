@@ -639,3 +639,18 @@ window.onload = function() {
 
 
   } 
+
+
+  // script.js
+const overlay = document.getElementById("overlay");
+
+function showModal() {
+  overlay.classList.remove("hidden");
+}
+
+function hideModal() {
+  overlay.classList.add("hidden");
+}
+
+// Example usage: show the modal overlay
+showModal();
