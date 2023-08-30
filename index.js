@@ -202,6 +202,11 @@ window.onload = function() {
   
         var chat_input_container = document.createElement('div')
         chat_input_container.setAttribute('id', 'chat_input_container')
+
+        var chat_input_send = document.createElement('button')
+        chat_input_send.setAttribute('id', 'chat_input_image')
+        chat_input_send.setAttribute('disabled', true)
+        chat_input_send.innerHTML = `<i class="fa-regular fa-image"></i>`
   
         var chat_input_send = document.createElement('button')
         chat_input_send.setAttribute('id', 'chat_input_send')
@@ -237,6 +242,7 @@ window.onload = function() {
             chat_input_send.classList.remove('enabled')
           }
         }
+
         // Add an event listener for the Enter key press
         chat_input.addEventListener('keypress', function(event) {
           if (event.key === 'Enter' && chat_input_send.classList.contains('enabled')) {
@@ -423,13 +429,6 @@ window.onload = function() {
               parent.refresh_chat();
             });
         });
-
-
-
-
-
-
-
       }
       
       // Get name. Gets the username from localStorage
@@ -642,15 +641,98 @@ window.onload = function() {
 
 
   // script.js
-const overlay = document.getElementById("overlay");
+  const overlay = document.getElementById("overlay");
 
-function showModal() {
-  overlay.classList.remove("hidden");
+  function showModal() {
+    overlay.classList.remove("hidden");
+  }
+  
+  function hideModal() {
+    overlay.classList.add("hidden");
+  }
+  
+  // Example usage: show the modal overlay
+  showModal();
+
+
+
+
+//Context
+// Prevent default context menu and display custom menu
+document.addEventListener("contextmenu", function (event) {
+  event.preventDefault();
+  showCustomContextMenu(event.clientX, event.clientY);
+});
+
+// Show custom context menu
+function showCustomContextMenu(x, y) {
+  const customContextMenu = document.getElementById("customContextMenu");
+  customContextMenu.style.left = x + "px";
+  customContextMenu.style.top = y + "px";
+  customContextMenu.style.display = "block";
+
+  // Handle clicks on menu items
+  customContextMenu.addEventListener("click", handleMenuItemClick);
 }
 
-function hideModal() {
-  overlay.classList.add("hidden");
+// Hide custom context menu
+document.addEventListener("click", function () {
+  const customContextMenu = document.getElementById("customContextMenu");
+  customContextMenu.style.display = "none";
+});
+
+// Handle clicks on menu items
+function handleMenuItemClick(event) {
+  const target = event.target;
+  if (target.tagName === "LI") {
+    // Perform action based on selected menu item
+    switch (target.id) {
+      case "menuItem1":
+        alert("Option 1 selected");
+        break;
+      case "menuItem2":
+        alert("Option 2 selected");
+        break;
+      case "menuItem3":
+        alert("Option 3 selected");
+        break;
+    }
+  }
+  // Hide the context menu
+  const customContextMenu = document.getElementById("customContextMenu");
+  customContextMenu.style.display = "none";
 }
 
-// Example usage: show the modal overlay
-showModal();
+
+
+const showFormButton = document.getElementById("showFormButton");
+const overlay2 = document.getElementById("overlay2");
+
+showFormButton.addEventListener("click", () => {
+    overlay2.style.display = "flex";
+});
+
+overlay2.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+        overlay.style.display = "none";
+    }
+});
+
+
+
+const showModalButton = document.getElementById("showModalButton");
+const modalOverlay = document.getElementById("modalOverlay");
+
+showModalButton.addEventListener("click", () => {
+    modalOverlay.style.display = "flex";
+});
+
+modalOverlay.addEventListener("click", (event) => {
+    if (event.target === modalOverlay) {
+        modalOverlay.style.display = "none";
+    }
+});
+
+function togglePopup(){
+  document.getElementById("popup-1").classList.toggle("active");
+}
