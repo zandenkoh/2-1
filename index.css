@@ -569,25 +569,41 @@ body {
   padding-right: 15px;
 
 } 
-
+.message_container:hover {
+      /* Different styles for the last message */
+      background-color: #000000; /* Example background color */
+      color: #ffffff;
+      -webkit-text-fill-color: #ffffff;
+      font-size: 20px;
+      margin-left: 42px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-top: 15px;
+      padding-bottom: 20px;
+      min-width: 150px;
+      border-radius: 0px 18px 18px 18px;
+      transition: all ease-in-out 0.2s;
+      margin-left: 30px;
+      animation: none;
+}
 /* Style for the last message */
 .message_container:last-child {
   /* Different styles for the last message */
-  background-color: #3700ffa8; /* Example background color */
+  background-color: #2982ffa8; /* Example background color */
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
   font-size: 20px;
   margin-left: 30px;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 15px;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
   min-width: 150px;
   border-radius: 0px 18px 18px 18px;
   margin-top: 20px;
   transform: scale(1.00);
   animation: Newmessage 0.7s linear infinite;
 }
+
 /*@keyframes Newmessage {
   0%, 100% {
     transform: translatex(0px);
@@ -630,25 +646,25 @@ body {
     transform: translateX(1px);
   }
   20% {
-    transform: translateX(2px);
+    transform: translateX(6px);
   }
   30% {
-    transform: translateX(4px);
+    transform: translateX(12px);
   }
   40% {
-    transform: translateX(10px);
+    transform: translateX(14px);
   }
   50% {
     transform: translateX(15px);
   }
   60% {
-    transform: translateX(10px);
+    transform: translateX(14px);
   }
   70% {
-    transform: translateX(4px);
+    transform: translateX(12px);
   }
   80% {
-    transform: translateX(2px);
+    transform: translateX(6px);
   }
   90% {
     transform: translateX(1px);
@@ -1273,3 +1289,25 @@ transition: all ease-in-out 600ms;
   transition: all ease-in-out 0.2s;
 }
 
+
+
+
+.context-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  z-index: 12222222222;
+}
+
+.menu-item {
+  display: block;
+  width: 100%;
+  padding: 5px 10px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
