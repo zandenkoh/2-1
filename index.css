@@ -583,9 +583,76 @@ body {
   padding-top: 15px;
   padding-bottom: 20px;
   min-width: 150px;
-  border-radius: 18px 18px 18px 0px;
+  border-radius: 0px 18px 18px 18px;
   margin-top: 20px;
   transform: scale(1.00);
+  animation: Newmessage 0.7s linear infinite;
+}
+/*@keyframes Newmessage {
+  0%, 100% {
+    transform: translatex(0px);
+
+  }
+  10% {
+    transform: translateX(1px);
+  }
+  20% {
+    transform: translateX(4px);
+  }
+  30% {
+    transform: translateX(10px);
+  }
+  40% {
+    transform: translateX(25px);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+  60% {
+    transform: translateX(25px);
+  }
+  70% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+  90% {
+    transform: translateX(1px);
+  }
+}*/
+@keyframes Newmessage {
+  0%, 100% {
+    transform: translatex(0px);
+
+  }
+  10% {
+    transform: translateX(1px);
+  }
+  20% {
+    transform: translateX(2px);
+  }
+  30% {
+    transform: translateX(4px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+  70% {
+    transform: translateX(4px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  90% {
+    transform: translateX(1px);
+  }
 }
 .message_container:last-child:hover {
     /* Different styles for the last message */
@@ -599,9 +666,10 @@ body {
     padding-top: 15px;
     padding-bottom: 20px;
     min-width: 150px;
-    border-radius: 18px 18px 18px 0px;
+    border-radius: 0px 18px 18px 18px;
     transition: all ease-in-out 0.2s;
     margin-left: 38px;
+    animation: none;
 }
 .message_container .message_user:last-child {
   margin-bottom: 6px;
@@ -613,7 +681,7 @@ body {
 }
 
 
-@keyframes Newmessage {
+/*@keyframes Newmessage {
   0%, 100% {
     transform: translate(0px);
 
