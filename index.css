@@ -26,9 +26,9 @@ body {
 }
 
 /* Title Styles */
-#title_container {
+/*#title_container {
   width: 100%;
-  max-height: 20px;
+  max-height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,13 +39,31 @@ body {
   min-height: 100px;
   /*animation: changeColour 0.3s linear infinite;*/
   /*background: #28324d;*/
+  /*background: linear-gradient(to top right, #ffc802, #ff4800, #0819d2, #0819d2);
+  opacity: 10px;
+  background-color: #000000;
+  /*box-shadow: 0px 0px 50px 20px #000000;*/
+
+/* Title Styles */
+#title_container {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 100000;
+  user-select: none;
+  min-height: auto;
+  /*animation: changeColour 0.3s linear infinite;*/
+  /*background: #28324d;*/
   /*background: linear-gradient(to top right, #ffc802, #ff4800, #0819d2, #0819d2);*/
   opacity: 10px;
   background-color: #000000;
   /*box-shadow: 0px 0px 50px 20px #000000;*/
-  
-}
 
+}
 
 
 #title_container:hover {
@@ -144,21 +162,28 @@ body {
 /* Join Form Styles */
 #join_container {
   width: 100%;
-  height: 400px;
+  height: 380px;
   display: flex;
   justify-content: center;
   align-items: center;
   float: left;
-  margin-top: 300px;
+  margin-top: 250px;
   z-index: 3000;
+  bottom: 300px;
+  
 
 }
 
 #join_inner_container {
-  width: 50%;
-  height: 100%;
+  width: 40%;
+  height: 70%;
+  background-color: #ffffff;
+  box-shadow: 0 0 20px 2px #adadad;
+  border-radius: 10px;
+  padding-top: 35px;
 
 }
+
 
 #join_input_container {
   width: 100%;
@@ -528,7 +553,7 @@ body {
   background-color: #ffffff;
   padding: 10px;
   border-radius: 0px 12px 12px 12px;
-  box-shadow: 0 0px 10px 2px rgba(100, 100, 100, 0.2);
+  box-shadow: 0 0px 10px 1px rgba(100, 100, 100, 0.2);
   transition: all 0.3s ease-in-out; /* Add this line for smooth height transition */
 
   margin-bottom: 12px;
@@ -545,6 +570,43 @@ body {
 
 } 
 
+/* Style for the last message */
+.message_container:last-child {
+  /* Different styles for the last message */
+  background-color: #3700ffa8; /* Example background color */
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  font-size: 20px;
+  margin-left: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  padding-bottom: 20px;
+  min-width: 150px;
+  border-radius: 18px 18px 18px 0px;
+  margin-top: 20px;
+  transform: scale(1.00);
+}
+.message_container:last-child:hover {
+    /* Different styles for the last message */
+    background-color: #000000; /* Example background color */
+    color: #ffffff;
+    -webkit-text-fill-color: #ffffff;
+    font-size: 20px;
+    margin-left: 42px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    min-width: 150px;
+    border-radius: 18px 18px 18px 0px;
+    transition: all ease-in-out 0.2s;
+    margin-left: 38px;
+}
+.message_container .message_user:last-child {
+  margin-bottom: 6px;
+  font-weight: 800;
+}
 /* Add this to your CSS */
 .highlighted-message {
   background-color: #000000; /* Adjust the color as needed */
@@ -594,6 +656,7 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
 
   color: #256cad;
 }
+
 
 .message_user:hover {
   background: none; /* Remove the background on hover */ 
@@ -700,7 +763,7 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   right: 0px; /* Initially positioned outside the container */
   transition:  0.3s ease-in-out; /* Add a smooth transition */
   position: relative;
-
+  margin-top: 8px;
   
 
 
