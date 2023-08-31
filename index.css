@@ -553,7 +553,7 @@ body {
   background-color: #ffffff;
   padding: 10px;
   border-radius: 0px 12px 12px 12px;
-  box-shadow: 0 0px 10px 1px rgba(100, 100, 100, 0.2);
+  box-shadow: 0 0px 30px 0px rgba(122, 122, 122, 0.2);
   transition: all 0.3s ease-in-out; /* Add this line for smooth height transition */
 
   margin-bottom: 12px;
