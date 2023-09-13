@@ -589,9 +589,10 @@ body {
 /* Style for the last message */
 .message_container:last-child {
   /* Different styles for the last message */
-  background-color: #2982ffa8; /* Example background color */
+  background-color: #2982ff; /* Example background color */
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
+  opacity: 1;
   font-size: 20px;
   margin-left: 30px;
   padding-left: 15px;
@@ -604,6 +605,8 @@ body {
   animation: Newmessage;
   animation-duration: 1.5s; /* Total duration of the animation */
   animation-iteration-count: infinite; /* Run the animation infinitely */
+  position: sticky;
+  bottom: 0px;
 }
 /*@keyframes Newnotification {
   0%, 100% {
