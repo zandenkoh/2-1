@@ -601,9 +601,39 @@ body {
   border-radius: 0px 18px 18px 18px;
   margin-top: 20px;
   transform: scale(1.00);
-  animation: Newmessage 0.7s linear infinite;
+  animation: Newmessage;
+  animation-duration: 1.5s; /* Total duration of the animation */
+  animation-iteration-count: infinite; /* Run the animation infinitely */
 }
-
+/*@keyframes Newnotification {
+  0%, 100% {
+    transform: translateX(-500px);
+  }
+  20% {
+    transform: translateX(-500px);
+  }
+  30% {
+    transform: translateX(-500px);
+  }
+  40% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(0px);
+  }
+  60% {
+    transform: translateX(0px);
+  }
+  70% {
+    transform: translateX(0px);
+  }
+  80% {  
+    transform: translateX(-500px);
+  }
+  90% {
+    transform: translateX(-500px);
+  }
+}*/
 /*@keyframes Newmessage {
   0%, 100% {
     transform: translatex(0px);
@@ -638,37 +668,37 @@ body {
   }
 }*/
 @keyframes Newmessage {
-  0%, 100% {
+  0%, 30%, 100% {
     transform: translatex(0px);
 
   }
-  10% {
+  /*10% {
     transform: translateX(1px);
   }
   20% {
-    transform: translateX(6px);
+    transform: translateX(2px);
   }
   30% {
-    transform: translateX(12px);
+    transform: translateX(3px);
   }
   40% {
-    transform: translateX(14px);
+    transform: translateX(5px);
+  }*/
+  15% {
+    transform: translateX(20px);
   }
-  50% {
-    transform: translateX(15px);
-  }
-  60% {
-    transform: translateX(14px);
+  /*60% {
+    transform: translateX(5px);
   }
   70% {
-    transform: translateX(12px);
+    transform: translateX(3px);
   }
   80% {
-    transform: translateX(6px);
+    transform: translateX(2px);
   }
   90% {
     transform: translateX(1px);
-  }
+  }*/
 }
 .message_container:last-child:hover {
     /* Different styles for the last message */
