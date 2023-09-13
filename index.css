@@ -607,7 +607,7 @@ body {
   animation-iteration-count: infinite; /* Run the animation infinitely */
   position: sticky;
   bottom: 0px;
-}
+} 
 /*@keyframes Newnotification {
   0%, 100% {
     transform: translateX(-500px);
