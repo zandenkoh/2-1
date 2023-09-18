@@ -410,7 +410,7 @@ body {
 
 
 #chat_input {
-  width: 90%;
+  width: 93%;
   min-height: 45px; /* Set a minimum height to show at least one line */
   max-height: 200px; /* Set a max height to enable scrolling if needed */
   background-color: transparent;
@@ -454,11 +454,12 @@ body {
   text-align: center;
   color: #7e7e7e;
   z-index: 1000;
-  right: 0px;
+  right: 5px;
   transition: ease-in-out 0.4s;
   margin-top: 5px;
   border-radius: 50% 50% 50% 50%;
   padding: 2px;
+  position: absolute;
 }
 
 #chat_input_send.enabled {
@@ -529,8 +530,8 @@ body {
   transition: ease-in-out 0.5s; /* Add transition to the container */
   border-radius: 10px;
   position: fixed;
-  top: 110px;
-  right: 10px;
+  top: 30px;
+  right: 0px;
   z-index: 999999999999;
 }
 
@@ -845,12 +846,17 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
 }
 
 .message_container:hover .message_timestamp {
-
+  font-size: 10px;
+  color: #929292;
+  margin-left: 0px;
+  padding-top: 10px;
+  user-select: none;
   opacity: 1;
-  transition: all ease-in-out 0.5s; /* Smooth transition for opacity */
- 
-
-  display: block; /* The element will appear when hovering over .message_container */
+  right: 0px; /* Initially positioned outside the container */
+  transition:  0.3s all ease-in-out; /* Add a smooth transition */
+  position: relative;
+  margin-top: 8px;
+  display: block;
 }
 
 
@@ -878,21 +884,28 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
 
 /* Styling for the timestamp in chat messages */
 .message_timestamp {
+  font-size: 0px;
+  color: #929292;
+  margin-left: 0px;
+  padding-top: 0px;
+  user-select: none;
+  opacity: 0;
+  right: 0px;
+  transition:  0.3s all ease-in-out;
+  position: relative;
+  margin-top: 0px;
+  /*  
   font-size: 10px;
   color: #929292;
   margin-left: 0px;
   padding-top: 10px;
   user-select: none;
+  opacity: 0;
   display: none;
-  right: 0px; /* Initially positioned outside the container */
-  transition:  0.3s ease-in-out; /* Add a smooth transition */
+  right: 0px;
+  transition:  0.3s ease-in-out;
   position: relative;
-  margin-top: 8px;
-  
-
-
-
-
+  margin-top: 8px;*/
 }
 
   .link-preview {
