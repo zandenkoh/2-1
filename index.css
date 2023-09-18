@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 body {
-  background-color: #f6f4f4 ;
+  /*background-color: #f6f4f4 ;*/
+  background: #efefef;
   font-family: 'Bungee Outline', sans-serif;
   font-weight: 900;
   overflow-y:  hidden;
@@ -332,7 +333,7 @@ body {
 
   #chat_container {
     width: 100%;
-    height: 78vh; /* Set the height to 100% of the viewport height */
+    height: 100%; /* Set the height to 100% of the viewport height */
     margin: 0;
     display: flex;
     flex-direction: column; /* Make the children stack vertically */
@@ -355,20 +356,22 @@ body {
 
 #chat_content_container {
   width: 100%;
-  height: 100%;
+  height: 50%;
   float: left;
   overflow-y: auto;
   font-family: 'Varela Round', sans-serif;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 120px;
-  padding-bottom: 0px;
+  padding-top: 110px;
+  margin-top: 100px;
+  padding-bottom: 83px;
   margin-top: 0px;
   font-weight: bolder;
+  margin-bottom: 120px;
 
 
-    /* Set a maximum height for the chat container and enable overflow scrolling */
-    max-height: 800px; /* Adjust the height as needed */
+    /* Set a maximum height for the chat container and enable overflow scrolling*/
+    max-height: 100vh; /* Adjust the height as needed */
     overflow-y: auto;
     scroll-behavior: smooth; /* Enable smooth scrolling */
   
@@ -376,47 +379,54 @@ body {
 
 #chat_input_container {
 
-  max-height: auto; /* Change to auto to accommodate the chat input */
+  height: 60px; /* Change to auto to accommodate the chat input */
   background-color: transparent;
-  padding-left: 30px;
-  padding-right: 15px;
+  padding-left: 7.5px;
+  padding-right: 0px;
   font-family: "Varela Round", sans-serif;
-  margin-top: 10px;
   display: flex; /* Use flexbox for better alignment */
-  align-items: flex-start; /* Align items at the top */
+  /*align-items: flex-start; /* Align items at the top */
   position: relative;
   overflow: visible;
-  margin-top: 40px;
+  margin-top: 0px;
   white-space: pre-wrap;
-  width: 100%;
-  box-shadow: 0px -5px 20px 5px #ffffff;
-  box-shadow: 0px 10px 20px 10px #ffffff;
-  background-color: #fafafa;
+  width: 80%;
+  /*box-shadow: 0px -5px 20px 5px #ffffff;*/
+  /*box-shadow: 0px 10px 20px 10px #ffffff;*/
+  background-color: #ffffff;
   z-index: 1000;
+  position: fixed;
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.5); /* Adjust the shadow properties */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 15px;
+  border-radius: 15px 15px 15px 15px;
+  transition: all ease-in-out 0.3s;
 }
-
+#chat_input_container:focus-within {
+  box-shadow: 0px 1px 8px 2px rgba(0, 0, 0, 0.7); /* Adjust the shadow properties */
+  transition: all ease-in-out 0.3s;
+}
 
 
 #chat_input {
   width: 90%;
-  min-height: 60px; /* Set a minimum height to show at least one line */
+  min-height: 45px; /* Set a minimum height to show at least one line */
   max-height: 200px; /* Set a max height to enable scrolling if needed */
   background-color: transparent;
   color: #000000;
   font-size: 16px;
-  margin-top: 5px;
   padding: 10px;
-  border-radius: 50px 50px 50px 50px;
+  border-radius: 10px 10px 10px 10px;
   overflow: scroll;
   white-space: pre-wrap;
   resize: vertical; /* Allow vertical resizing of the input */
   box-sizing: border-box; /* Include padding in width and height calculations */
-  margin-top: 10px;
-  /*box-shadow: 100px 0px 100px 100px rgba(0, 0, 0, 0.2);*/
+  margin-top: 5px;
   transition: ease-in-out 0.3s;
-   padding-left: 30px;
-   outline: #b5b5b5 solid 1px;
-   margin-left: 30px;
+   padding-left: 0px;
+   outline: #b5b5b577 solid 0px;
+   margin-left: 7px;
 
 
 }
@@ -424,34 +434,31 @@ body {
 
 
 #chat_input:focus {
-  box-shadow: 0px -0px 5px 3px rgba(0, 0, 0, 0.5);
+  /*box-shadow: 0px -0px 5px 3px rgba(0, 0, 0, 0.5);*/
   transition: all ease-in-out 0.3s;
   color: #000000;
   background-color: #ffffff;
   outline: none;
-  outline: #b5b5b5 solid 1px;
-  padding-left: 20px;
-  
+  outline: #b5b5b5 solid 0px;
+  padding-left: 0px;
 }
 
 
 
 #chat_input_send {
-  width: 63px;
-  height: 63px;
-  float: left;
-  font-size: 25px;
-  background-color: #000000;
+  width: 50px;
+  height: 50px;
+  float: right;
+  font-size: 20px;
+  background-color: transparent;
   text-align: center;
-  color: #ffffff;
+  color: #7e7e7e;
   z-index: 1000;
-  margin-left: 10px;
+  right: 0px;
   transition: ease-in-out 0.4s;
-  margin-top: 8px;
+  margin-top: 5px;
   border-radius: 50% 50% 50% 50%;
-  padding: 10px;
-
-
+  padding: 2px;
 }
 
 #chat_input_send.enabled {
@@ -460,12 +467,11 @@ body {
   cursor: pointer;
   transition: ease-in-out 0.4s;
   background-color: #1ba1df;
-  border-radius: 50%;
+  border-radius: 10px;
   z-index: 1001;
-  animation: BounceButton 0.5s ; /* Apply the animation once */
+  /*animation: BounceButton 0.5s ; /* Apply the animation once */
 
 }
-
 
 #chat_input_send.enabled:hover {
   cursor: pointer;
@@ -514,25 +520,27 @@ body {
 
 
 #chat_logout_container {
-  width: 100%;
-  display: inline-block;
+  width: 15%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  float: left;
-  margin-top: 20px;
-  background: none;
+  /*align-items: center;*/
+  /*float: left;*/
+  background: transparent;
   transition: ease-in-out 0.5s; /* Add transition to the container */
   border-radius: 10px;
+  position: fixed;
+  top: 110px;
+  right: 10px;
+  z-index: 999999999999;
 }
 
 #chat_logout {
-  color: #000000;
+  background-color: #434343;
+  color: #ffffff;
   cursor: pointer;
   font-size: 16px; /* Initial font size */
   transition: ease-in-out 0.3s; /* Add transition to the logout button */
-  border-radius: 12px;
-
+  border-radius: 8px;
   padding: 10px;
   margin-top: 0px;
   
@@ -540,7 +548,7 @@ body {
 
 #chat_logout:hover {
 
-  background-color: #000000;
+  background-color: #0000008e;
   color: #ffffff;
   border-radius: 10px;
 
@@ -552,7 +560,7 @@ body {
 .message_container {
   background-color: #ffffff;
   padding: 10px;
-  border-radius: 0px 12px 12px 12px;
+  border-radius: 0px 20px 20px 20px;
   box-shadow: 0 0px 30px 0px rgba(122, 122, 122, 0.2);
   transition: all 0.3s ease-in-out; /* Add this line for smooth height transition */
 
@@ -570,10 +578,10 @@ body {
 
 } 
 .message_container:hover {
-      /* Different styles for the last message */
+      /* Different styles for the last message 
       background-color: #000000; /* Example background color */
-      color: #ffffff;
-      -webkit-text-fill-color: #ffffff;
+      color: #000000;
+
       font-size: 20px;
       margin-left: 42px;
       padding-left: 15px;
@@ -581,15 +589,14 @@ body {
       padding-top: 15px;
       padding-bottom: 20px;
       min-width: 150px;
-      border-radius: 0px 18px 18px 18px;
+
       transition: all ease-in-out 0.2s;
       margin-left: 30px;
       animation: none;
 }
-/* Style for the last message */
+/* Style for the last message*/
 .message_container:last-child {
-  /* Different styles for the last message */
-  background-color: #2982ff; /* Example background color */
+  background-color: #2982ff;
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
   opacity: 1;
@@ -599,14 +606,14 @@ body {
   padding-right: 15px;
   padding-bottom: 10px;
   min-width: 150px;
-  border-radius: 0px 18px 18px 18px;
+  border-radius: 15px 15px 15px 15px;
   margin-top: 20px;
   transform: scale(1.00);
   animation: Newmessage;
-  animation-duration: 1.5s; /* Total duration of the animation */
-  animation-iteration-count: infinite; /* Run the animation infinitely */
-  position: sticky;
-  bottom: 0px;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  /*position: sticky;
+  bottom: 0px;*/
 } 
 /*@keyframes Newnotification {
   0%, 100% {
@@ -715,7 +722,7 @@ body {
     padding-top: 15px;
     padding-bottom: 20px;
     min-width: 150px;
-    border-radius: 0px 18px 18px 18px;
+
     transition: all ease-in-out 0.2s;
     margin-left: 38px;
     animation: none;
@@ -971,6 +978,10 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   .loader_container{
     width: 100%;
     height: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   
     display: flex;
     justify-content: center;
@@ -1007,23 +1018,30 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   /* width */
   ::-webkit-scrollbar {
     width: 15px;
-    margin-right: 3px;
+    margin-right: 4px;
     z-index: 1001;
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 4px;
-    margin-right: 3px;
+    border-radius: 0px;
+    margin-right: 4px;
     z-index: 1001;
+  }
+  ::-webkit-scrollbar-track:hover {
+    width: 20px;
   }
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #000000;
-    border-radius: 13px;
+    background: #565656;
+    border-radius: 0px;
     z-index: 1001;
+    width: 100%;
 
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #252525;
   }
 
  
