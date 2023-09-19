@@ -779,11 +779,11 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   position: absolute;
   margin-top: -34px;
   background: transparent;
-  color: #256cad;
+  color: #2982ff;
   font-weight: 100;
-  font-size: 13px;
+  font-size: 14px;
   /*color: #095495;*/
-  color: #000000;
+
   margin-left: -17px;
 }
 
@@ -901,16 +901,7 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   position: relative;
   margin-top: 8px;*/
 }
-@keyframes Extend {
-  0% {
-    font-size: 0px;
-    opacity: 0;
-  }
-  100% {
-    font-size: 10px;
-    opacity: 1;
-  }
-}
+
 
   .link-preview {
     display: flex;
