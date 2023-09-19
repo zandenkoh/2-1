@@ -3,7 +3,7 @@
 
 body {
   /*background-color: #f6f4f4 ;*/
-  background: #efefef;
+  background: #f6f6f6;
   font-family: 'Bungee Outline', sans-serif;
   font-weight: 900;
   overflow-y:  hidden;
@@ -359,10 +359,10 @@ body {
   height: 50%;
   float: left;
   overflow-y: auto;
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Varela Round';
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 110px;
+  padding-top: 130px;
   margin-top: 100px;
   padding-bottom: 83px;
   margin-top: 0px;
@@ -560,22 +560,24 @@ body {
 /* Apply the normal message styles to all messages */
 .message_container {
   background-color: #ffffff;
-  padding: 10px;
+  padding: 16px;
   border-radius: 0px 20px 20px 20px;
   box-shadow: 0 0px 30px 0px rgba(122, 122, 122, 0.2);
   transition: all 0.3s ease-in-out; /* Add this line for smooth height transition */
 
-  margin-bottom: 12px;
+  margin-bottom: 30px;
   max-width: 90%;
   white-space: pre-wrap;
   width: fit-content;
-  min-width: 100px;
+  min-width: 110px;
   margin-left: 30px;
   transition: ease-in-out 0.3s;
   color: #000000;
   /*animation: Newmessage 0.5s 1;*/
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 22px;
+  padding-right: 22px;
+
+  position: relative;
 
 } 
 .message_container:hover {
@@ -585,10 +587,10 @@ body {
 
       font-size: 20px;
       margin-left: 42px;
-      padding-left: 15px;
-      padding-right: 15px;
-      padding-top: 15px;
-      padding-bottom: 20px;
+      padding-left: 22px;
+      padding-right: 22px;
+      padding-top: 16px;
+      padding-bottom: 16px;
       min-width: 150px;
 
       transition: all ease-in-out 0.2s;
@@ -599,20 +601,21 @@ body {
 .message_container:last-child {
   background-color: #2982ff;
   color: #ffffff;
-  -webkit-text-fill-color: #ffffff;
   opacity: 1;
   font-size: 20px;
   margin-left: 30px;
-  padding-left: 15px;
-  padding-right: 15px;
-  padding-bottom: 10px;
+  padding-left: 22px;
+  padding-right: 22px;
+  padding-bottom: 16px;
+  padding-top: 16px;
   min-width: 150px;
-  border-radius: 15px 15px 15px 15px;
+  border-radius: 0px 15px 15px 15px;
   margin-top: 20px;
   transform: scale(1.00);
   animation: Newmessage;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
+  animation-delay: 0.6s;
   /*position: sticky;
   bottom: 0px;*/
 } 
@@ -715,9 +718,7 @@ body {
     /* Different styles for the last message */
     background-color: #000000; /* Example background color */
     color: #ffffff;
-    -webkit-text-fill-color: #ffffff;
     font-size: 20px;
-    margin-left: 42px;
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 15px;
@@ -725,7 +726,6 @@ body {
     min-width: 150px;
 
     transition: all ease-in-out 0.2s;
-    margin-left: 38px;
     animation: none;
 }
 .message_container .message_user:last-child {
@@ -776,10 +776,15 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
 
 
 .message_user {
-  position: relative;
-
-
+  position: absolute;
+  margin-top: -34px;
+  background: transparent;
   color: #256cad;
+  font-weight: 100;
+  font-size: 13px;
+  /*color: #095495;*/
+  color: #000000;
+  margin-left: -17px;
 }
 
 
@@ -859,15 +864,6 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   display: block;
 }
 
-
-
-.message_user {
-  font-weight: bold;
-  font-size: 13px;
-  margin-bottom: 4px;
-  color: #095495;
-}
-
 .message_container.sent {
   justify-content: flex-end; /* Push your messages to the right */
 }
@@ -886,15 +882,13 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
 .message_timestamp {
   font-size: 0px;
   color: #929292;
-  margin-left: 0px;
-  padding-top: 0px;
   user-select: none;
   opacity: 0;
-  right: 0px;
   transition:  0.3s all ease-in-out;
   position: relative;
-  margin-top: 0px;
+  animation: Extend linear 0.3s;
   /*  
+
   font-size: 10px;
   color: #929292;
   margin-left: 0px;
@@ -906,6 +900,16 @@ box-shadow: 0 4px 8px 0 rgba(214, 64, 69, 0.2); /* Adjust shadow color for sent 
   transition:  0.3s ease-in-out;
   position: relative;
   margin-top: 8px;*/
+}
+@keyframes Extend {
+  0% {
+    font-size: 0px;
+    opacity: 0;
+  }
+  100% {
+    font-size: 10px;
+    opacity: 1;
+  }
 }
 
   .link-preview {
