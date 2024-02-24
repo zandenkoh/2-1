@@ -213,7 +213,7 @@ window.onload = function() {
         var chat_input = document.createElement('input')
         chat_input.setAttribute('id', 'chat_input')
         // Only a max message length of 1000
-        chat_input.setAttribute('maxlength', 1000)
+        chat_input.setAttribute('maxlength', 300)
         // Get the name of the user
         chat_input.placeholder = `${parent.get_name()}, join the conversation!`
         chat_input.onkeyup  = function(){
