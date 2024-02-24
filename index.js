@@ -68,7 +68,7 @@ window.onload = function() {
   
         var title = document.createElement('h1')
         title.setAttribute('id', 'title')
-        title.textContent = '1-1'
+        title.textContent = '2-1'
   
         title_inner_container.append(title)
         title_container.append(title_inner_container)
@@ -202,16 +202,13 @@ window.onload = function() {
   
         var chat_input_container = document.createElement('div')
         chat_input_container.setAttribute('id', 'chat_input_container')
-
-        var chat_input_send = document.createElement('button')
-        chat_input_send.setAttribute('id', 'chat_input_image')
-        chat_input_send.setAttribute('disabled', true)
-        chat_input_send.innerHTML = `<i class="fa-regular fa-image"></i>`
   
         var chat_input_send = document.createElement('button')
         chat_input_send.setAttribute('id', 'chat_input_send')
         chat_input_send.setAttribute('disabled', true)
-        chat_input_send.innerHTML = `<i class="fa-solid fa-paper-plane"></i>`
+        chat_input_send.setAttribute('unsent', true)
+        chat_input_send.innerHTML = `<i class="fa-solid fa-arrow-up"></i>`
+        
   
         var chat_input = document.createElement('input')
         chat_input.setAttribute('id', 'chat_input')
@@ -221,16 +218,22 @@ window.onload = function() {
         chat_input.placeholder = `${parent.get_name()}, join the conversation!`
         chat_input.onkeyup  = function(){
           if(chat_input.value.length > 0){
-            chat_input_send.removeAttribute('disabled')
-            chat_input_send.classList.add('enabled')
+            chat_input_send.removeAttribute('disabled');
+            chat_input_send.setAttribute('unsent', true);
+            chat_input_send.classList.add('enabled');
+            chat_input_send.classList.remove('sent');
+
+           
             chat_input_send.onclick = function(){
-              chat_input_send.setAttribute('disabled', true)
-              chat_input_send.classList.remove('enabled')
+              chat_input_send.removeAttribute('unsent');
+              chat_input_send.classList.add('sent');
+              chat_input_send.setAttribute('disabled', true);
+              chat_input_send.classList.remove('enabled');
               if(chat_input.value.length <= 0){
                 return
               }
               // Enable the loading circle in the 'chat_content_container'
-              parent.create_load('chat_content_container')
+              parent.create_load('chat_content_container');
               // Send the message. Pass in the chat_input.value
               parent.send_message(chat_input.value)
               // Clear the chat input box
@@ -239,25 +242,26 @@ window.onload = function() {
               chat_input.focus()
             }
           }else{
-            chat_input_send.classList.remove('enabled')
+            chat_input_send.classList.remove('enabled');
+            chat_input_send.classList.remove('sent');
           }
         }
 
-        // Add an event listener for the Enter key press
         chat_input.addEventListener('keypress', function(event) {
-          if (event.key === 'Enter' && chat_input_send.classList.contains('enabled')) {
-            chat_input_send.click(); // Trigger the send button's click event
+          if (event.key === 'Enter' && chat_input_send.classList.contains('enabled','sent')) {
+            setTimeout(function() {
+              chat_input_send.click();
+            }, 90); // Trigger the send button's click event
           }
-        });
-  
 
-  
+        });
+
         var chat_logout_container = document.createElement('div')
         chat_logout_container.setAttribute('id', 'chat_logout_container')
   
         var chat_logout = document.createElement('button')
         chat_logout.setAttribute('id', 'chat_logout')
-        chat_logout.textContent = `${parent.get_name()} • Logout`
+        chat_logout.textContent = `${parent.get_name()} | Logout`
         // "Logout" is really just deleting the name from the localStorage
         chat_logout.onclick = function(){
           localStorage.clear()
@@ -281,25 +285,27 @@ window.onload = function() {
    
 
 
+       // Function to format date to 12-hour format with AM/PM
+      function formatTimestamp(timestamp) {
+        const date = new Date(timestamp * 1000); // Convert Unix timestamp to milliseconds
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12; // Convert 0 to 12
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+
+        return `${formattedHours}:${formattedMinutes} ${ampm}`;
+      }
+
+
        ordered.forEach(function(data) {
         var name = data.name;
         var message = data.message;
         var timestamp = data.timestamp; // Get the timestamp from the message data
         var isCurrentUser = name === parent.get_name(); // Check if the message is sent by the current user
-        var isLatestMessage = timestamp === latestMessage.timestamp; // Check if this message is the latest
-
-
+      
         var message_container = document.createElement('div');
-        message_container.setAttribute('class', `message_container ${isCurrentUser ? 'sent' : 'received'}'`);
-        var prevTimestamp = index > 0 ? ordered[index - 1].timestamp : null;
-
-        // Add 'highlighted-message' class to the most recent message
-        if (prevTimestamp !== null && timestamp > prevTimestamp) {
-          message_container.classList.add('message_container', 'highlighted-message');
-        } else {
-          message_container.classList.add('message_container');
-        }
-
+        message_container.setAttribute('class', `message_container ${isCurrentUser ? 'sent' : 'received'}`);
       
         var message_inner_container = document.createElement('div');
         message_inner_container.setAttribute('class', 'message_inner_container');
@@ -332,55 +338,10 @@ window.onload = function() {
       });
       
       
-      // Function to format the timestamp to 12-hour clock with AM/PM
-      function formatTimestamp(timestamp) {
-        var date = new Date(timestamp);
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // The hour '0' should be '12'
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        var formattedTime = hours + ':' + minutes + ' ' + ampm;
-        return formattedTime;
-      }
-
-      // Find the latest message by comparing timestamps
-      function findLatestMessage(messages) {
-        if (messages.length === 0) {
-          return null; // No messages
-        }
-
-        let latestMessage = messages[0]; // Initialize with the first message
-        for (let i = 1; i < messages.length; i++) {
-          if (messages[i].timestamp > latestMessage.timestamp) {
-            latestMessage = messages[i];
-          }
-        }
-        return latestMessage;
-      }
-
-      // Call the function to get the latest message
-      const latestMessage = findLatestMessage(ordered);
-
-      // Now you have the latestMessage object, you can use it to determine the latest message's timestamp and other properties.
-      if (latestMessage) {
-        const latestTimestamp = latestMessage.timestamp;
-        const latestSender = latestMessage.name;
-        const latestContent = latestMessage.message;
-        console.log(`Latest message: ${latestSender} - ${latestContent} - Timestamp: ${latestTimestamp}`);
-      } else {
-        console.log('No messages available.');
-      }
-
-      
     
       // Go to the recent message at the bottom of the container
       const lastMessage = chat_content_container.lastElementChild;
       lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-
-
-
      }
 
       
@@ -388,7 +349,8 @@ window.onload = function() {
       save_name(name){
         // Save name to localStorage
         localStorage.setItem('name', name)
-      }
+      }    
+
       // Sends message/saves the message to firebase database
       send_message(message){
         var parent = this;
@@ -417,9 +379,7 @@ window.onload = function() {
             message: message.trim(),
             timestamp: timestamp,
             index: index,
-            sender: '${parent.get_name()}' // Add this property to identify the sender
-            
-
+            sender: parent.get_name() // Update this property to identify the sender
           };
       
           // Push the message data to the database
@@ -430,6 +390,8 @@ window.onload = function() {
             });
         });
       }
+      
+      
       
       // Get name. Gets the username from localStorage
       get_name(){
@@ -637,102 +599,4 @@ window.onload = function() {
 
 
 
-  } 
-
-
-  // script.js
-  const overlay = document.getElementById("overlay");
-
-  function showModal() {
-    overlay.classList.remove("hidden");
   }
-  
-  function hideModal() {
-    overlay.classList.add("hidden");
-  }
-  
-  // Example usage: show the modal overlay
-  showModal();
-
-
-
-
-//Context
-// Prevent default context menu and display custom menu
-document.addEventListener("contextmenu", function (event) {
-  event.preventDefault();
-  showCustomContextMenu(event.clientX, event.clientY);
-});
-
-// Show custom context menu
-function showCustomContextMenu(x, y) {
-  const customContextMenu = document.getElementById("customContextMenu");
-  customContextMenu.style.left = x + "px";
-  customContextMenu.style.top = y + "px";
-  customContextMenu.style.display = "block";
-
-  // Handle clicks on menu items
-  customContextMenu.addEventListener("click", handleMenuItemClick);
-}
-
-// Hide custom context menu
-document.addEventListener("click", function () {
-  const customContextMenu = document.getElementById("customContextMenu");
-  customContextMenu.style.display = "none";
-});
-
-// Handle clicks on menu items
-function handleMenuItemClick(event) {
-  const target = event.target;
-  if (target.tagName === "LI") {
-    // Perform action based on selected menu item
-    switch (target.id) {
-      case "menuItem1":
-        alert("Option 1 selected");
-        break;
-      case "menuItem2":
-        alert("Option 2 selected");
-        break;
-      case "menuItem3":
-        alert("Option 3 selected");
-        break;
-    }
-  }
-  // Hide the context menu
-  const customContextMenu = document.getElementById("customContextMenu");
-  customContextMenu.style.display = "none";
-}
-
-
-
-const showFormButton = document.getElementById("showFormButton");
-const overlay2 = document.getElementById("overlay2");
-
-showFormButton.addEventListener("click", () => {
-    overlay2.style.display = "flex";
-});
-
-overlay2.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-        overlay.style.display = "none";
-    }
-});
-
-
-
-const showModalButton = document.getElementById("showModalButton");
-const modalOverlay = document.getElementById("modalOverlay");
-
-showModalButton.addEventListener("click", () => {
-    modalOverlay.style.display = "flex";
-});
-
-modalOverlay.addEventListener("click", (event) => {
-    if (event.target === modalOverlay) {
-        modalOverlay.style.display = "none";
-    }
-});
-
-function togglePopup(){
-  document.getElementById("popup-1").classList.toggle("active");
-}
