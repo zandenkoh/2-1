@@ -1,3 +1,5 @@
+document.addEventListener('contextmenu',
+event => event.preventDefault());
 // We enclose this in window.onload.
 // So we don't have ridiculous errors.
 window.onload = function() {
