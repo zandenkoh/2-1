@@ -9,7 +9,6 @@
     <link href='https://fonts.googleapis.com/css?family=Varela Round' rel='stylesheet'/>
     <!-- Use font awesome icons. -->
     <script src="https://kit.fontawesome.com/a47fae704c.js"></script>
-    <script src="https://kit.fontawesome.com/a47fae704c.js" crossorigin="anonymous"></script>
     <!-- Use firebase app and database. -->
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-database.js"></script>
@@ -20,12 +19,28 @@
 
   </head>
   <body>
-    <!--<div id="overlay" class="hidden">
-      <div class="modal">
-        <p>This Chat has been disabled. Come back in a few hours!</p>
+    <!--<input type="file" id="fileInput" accept="image/*, .pdf, .doc, .txt" />-->
+    <div class="advertisement" id="advertisement">
+      <div class="ad-content">
+          <div class="ad-text">
+              <h2>Exciting Update Coming Soon!</h2>
+              <p>Hello user,</p>
+              <p>🎉 Big Update Alert! 🎉</p>
+
+              <ul>
+                <li>New Features: We have added countless requested features</li>
+                <br>
+                <li>Improvements: We've also enhanced the design of the chat with a more sophisticated and modern theme.</li>
+                <br>
+                <li>Bug Fixes: And we've also squashed some pesky bugs.</li>
+              </ul>
+              
+          </div>
+          <div class="close-btn" id="closeBtn">&times;</div>
       </div>
-    </div>-->
-
-
+      <div class="progress-container">
+          <div class="progress-bar" id="progressBar"></div>
+      </div>
+  </div>
   </body>
 </html>
