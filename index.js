@@ -1,3 +1,31 @@
+document.addEventListener("DOMContentLoaded", function() {
+  // Get the close button and advertisement elements
+  var closeBtn = document.getElementById("closeBtn");
+  var advertisement = document.getElementById("advertisement");
+  var progressBar = document.getElementById("progressBar");
+
+  // Close the advertisement when close button is clicked
+  closeBtn.addEventListener("click", function() {
+      advertisement.style.display = "none";
+  });
+
+  // Automatically close the advertisement after 5 seconds
+  setTimeout(function() {
+      advertisement.style.display = "none";
+  }, 10000);
+
+  // Update the progress bar
+  var width = 1;
+  var interval = setInterval(function() {
+      if (width >= 100) {
+          clearInterval(interval);
+      } else {
+          width++;
+          progressBar.style.width = width + "%";
+      }
+  }, 46); // Adjust the speed of the progress bar here
+}); 
+
 document.addEventListener('contextmenu',
 event => event.preventDefault());
 // We enclose this in window.onload.
