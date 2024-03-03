@@ -1,3 +1,4 @@
+
 .advertisement {
   font-family: 'Courier New', Courier, monospace;
   position: absolute;
@@ -6,7 +7,7 @@
   background-color: #fff;
   padding: 20px;
   border-radius: 15px 15px 15px 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 120px rgba(0, 0, 0, 0.7);
   overflow: hidden;
   left: 50%;
   top: 50%;
@@ -90,10 +91,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
 body {
-  background-color: #ffffff ;
+
   font-family: 'Bungee Outline', sans-serif;
   font-weight: 900;
   overflow-y:  hidden;
+  overflow-x: hidden;
   /*animation: blur 2s ease-in-out;*/
   height: 100%;
   margin: 0;
@@ -235,7 +237,7 @@ body {
   align-items: center;
   float: left;
   margin-top: calc(100vh - 300px);;
-  z-index: 3000;
+  z-index: 30000;
 
 }
 
@@ -401,9 +403,13 @@ body {
     /* Fade in container */
     animation: fadeIn 1s linear;
     padding: 0;
-    z-index: 1;
+    z-index: 30000;
+    background-color: #ffffff;
   }
-  
+
+  .chat_container_dark_mode {
+    background-color: #ffffff;
+  }
 
 #chat_inner_container {
   width: 100%;
@@ -412,6 +418,7 @@ body {
 }
 
 #chat_content_container {
+
   width: 100%;
   height: 100%;
   float: left;
@@ -419,11 +426,11 @@ body {
   font-family: 'Varela Round', sans-serif;
   padding-left: 15px;
   padding-right: 15px;
-  padding-top: 120px;
-  padding-bottom: 120px;
+  padding-top: 140px;
+  padding-bottom: 130px;
   margin-top: 0px;
   font-weight: bolder;
-  z-index: 1;
+  z-index: 10000;
     /* Set a maximum height for the chat container and enable overflow scrolling */
     max-height: 800px; /* Adjust the height as needed */
     scroll-behavior: smooth; /* Enable smooth scrolling */
@@ -449,7 +456,7 @@ body {
   /*box-shadow: 0px -20px 50px 5px #000000;*/
   justify-content: center;
   margin-bottom: -60px;
-  z-index: 2;
+  z-index: 2000;
   overflow-y: visible;
 }
 
@@ -459,7 +466,7 @@ body {
   max-width: 1000px;
   min-height: 50px;
   background-color: transparent;
-  color: #000000;
+  color: #303030;
   font-size: 16px;
   padding: 7px;
   border-radius: 15px;
@@ -485,19 +492,22 @@ body {
   color: #000000;
   background-color: #ffffff;
   outline: #474747 solid 1px;
+  width: 65%;
 }
 
 #chat_settings {
+  position: absolute;
+  bottom: calc(100vh - 75px);
+  right: 25px;
   width: 50px;
   height: 50px;
-  float: left;
   /*float: left;*/
-  font-size: 22px;
+  font-size: 16px;
   text-align: center;
   background-color: transparent;
   color: #000000;
-  z-index: 1000;
-  transition: ease-in-out 0.4s;
+  z-index: 2000;
+  transition: ease-in-out 0.2s;
   border-radius: 15px;
   padding: 10px;
   margin-left: 20px;
@@ -509,10 +519,211 @@ body {
 
 #chat_settings:hover {
   cursor: pointer;
-  transform: translateY(-6px);
+  transform: translateY(0px);
   transition: ease 0.15s;
+  background-color: #000000;
+  color: #ffffff;
 }
 
+.sidebar {
+  z-index: 1999;
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 0;
+  height: 100%;
+  background-color: #f2f2f2;
+  color: #000000;
+  backdrop-filter: blur(4px); /* Change the amount of blur as needed */
+  -webkit-backdrop-filter: blur(4px);
+
+  transition: left 0.3s ease;
+  padding-top: 130px;
+  display: block;
+  opacity: 0;
+  padding-left: 35px;
+}
+
+/*.sidebar i {
+  font-size: 25px;
+  margin-bottom: 10vh;
+  transition: 0.3s ease;
+}
+
+.sidebar i:hover {
+
+  cursor: pointer;
+  transition: 0.3s ease;
+  transform: scale(1.3);
+}*/
+
+#meet {
+  font-size: 25px;
+  margin-bottom: 10vh;
+  transition: 0.3s ease;
+  animation: var(--meet-animation, none 1s infinite);
+}
+
+#meet:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  transform: scale(1.3);
+}
+
+.vibrating {
+  animation: vibrate 0.5s infinite;
+}
+
+@keyframes vibrate {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(5px); }
+}
+
+.vibrating {
+  animation: vibrate 0.5s infinite;
+}
+
+
+#music {
+  font-size: 25px;
+  margin-bottom: 10vh;
+  transition: 0.3s ease;
+}
+
+.spotify {
+  margin-top: 25px;
+  z-index: 1000;
+  position: fixed;
+  width: 75vw;
+  opacity: 0;
+  height: 80vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  box-shadow: 0 0 70px #000000;
+  border: 2px solid #ffffff;
+  border-radius: 11px 11px 11px 11px;
+  transition: 1s ease-in-out;
+}
+
+.spotify .buttons {
+  position: absolute;
+  top: -50px;
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% + 3.44px);
+  background: #ffffff;
+  border-radius: 11px 11px 11px 11px;
+  height: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.spotify .buttons button {
+  flex: 1;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.spotify .buttons button:hover {
+  transform: translateY(0px);
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.playlist {
+  height: 100%;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  backdrop-filter: blur(4px); /* Change the amount of blur as needed */
+  -webkit-backdrop-filter: blur(4px);
+  display: none;
+  z-index: 999;
+  transition: 0.4s ease-in-out;
+}
+
+#music:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  transform: scale(1.3);
+}
+
+#games {
+  font-size: 25px;
+  margin-bottom: 10vh;
+  transition: 0.3s ease;
+}
+
+#games:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  transform: scale(1.3);
+}
+
+#feedback {
+  font-size: 25px;
+  margin-bottom: 10vh;
+  transition: 0.3s ease;
+}
+
+#feedback:hover {
+  cursor: pointer;
+  transition: 0.3s ease;
+  transform: scale(1.3);
+}
+
+.forms {
+  position: fixed;
+  width: 75vw;
+  opacity: 0;
+  height: 80vh;
+  z-index: 1090;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  box-shadow: 0 0 70px #000000;
+  border: 2px solid #ffffff;
+  border-radius: 11px 11px 10px 10px;
+  transition: 1s ease-in-out;
+  background: #ffffffbe;
+}
+
+#light_mode {
+  color: #000000;
+  font-size: 25px;
+  margin-bottom: 10vh;
+  transition: 0.3s ease;
+}
+
+#light_mode:hover {
+  color: #000000;
+  rotate: 360deg;
+  transition: 0.8s ease;
+  cursor: pointer;
+  transform: scale(1.3);
+}
+
+#light_mode:active {
+  transform: scale(0.95);
+  transition: 0.1s ease;
+}
 
 
 #chat_input_send {
@@ -532,6 +743,7 @@ body {
   margin-top: -180px;
   backdrop-filter: blur(4px); /* Change the amount of blur as needed */
   -webkit-backdrop-filter: blur(4px);
+  border: 2px solid #ffffff29;
 }
 
 #chat_input_send.enabled {
@@ -543,7 +755,7 @@ body {
   border-radius: 15px;
   z-index: 1001;
   /*animation: BounceButton 0.5s ; Apply the animation once */
-
+  border: 2px solid #ffffff;
 }
 
 #chat_input_send.enabled:hover {
@@ -630,27 +842,34 @@ body {
 /* Message Styles */
 /* Apply the normal message styles to all messages */
 .message_container {
-  background-color: #f2f2f2;
-  border-radius: 0px 12px 12px 12px;
+  background: var(--message-container-background-color, #f2f2f2);
+  /*background-color: #f2f2f2;*/
+  border-radius: 0px 15px 15px 15px;
   /*box-shadow: 0 4px 8px 0 rgba(9, 71, 106, 0.2);*/
   transition: height 0.3s ease; /* Add this line for smooth height transition */
   position: relative;
-  margin-bottom: 12px;
+  margin-bottom: 26px;
   max-width: 90%;
   white-space: pre-wrap;
   width: fit-content;
-  min-width: 100px;
+  min-width: 150px;
   margin-left: 20px;
   transition: ease-in-out 0.3s;
-  color: #000000;
+  color: var(--message-container-color, #000000);
   /*animation: Newmessage 0.5s 1;*/
-  padding-left: 16px;
+  /*padding-left: 16px;
   padding-right: 26px;
   padding-bottom: 10px;
-  padding-top: 10px;
+  padding-top: 10px;*/
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 14px;
+  padding-top: 14px;
+
   line-height: 20px;
-  font-size: 14px;
+  font-size: 12px;
   user-select: text;
+
 } 
 
 .message_container:hover {
@@ -663,11 +882,13 @@ body {
   margin-left: 30px;
   background-color: #e0e0e0;
   cursor: normal;
+  margin-bottom: 40px;
 }
 
 .message_container:hover .message_timestamp {
   transition: 0.3s ease; /* Add this line for smooth height transition */
-  display: none; /* The element will appear when hovering over .message_container */
+  display: block; /* The element will appear when hovering over .message_container */
+  opacity: 1;
 }
 
 
@@ -682,8 +903,6 @@ body {
 }
 
 /*HHGSougwoqudgwgFDUOEWgfdwD*/
-
-chat_title
 /*HHGSougwoqudgwgFDUOEWgfdwD*/
 
 .message_user:hover {
@@ -725,26 +944,33 @@ chat_title
 
 
 .message_user {
+  position: absolute;
+  margin-top: -35px;
+  margin-left: -13px;
+
   font-weight: 900;
   font-size: 13px;
   margin-bottom: 4px;
   /*color: #095495;*/
-  color: #215eb9;
+  color: #353535;
+  color: var(--message-user-color, #215eb9);
   font-weight: 900;
   user-select: none;
 }
 
 /* Styling for the timestamp in chat messages */
 .message_timestamp {
-  font-size: 10px;
-  color: #000000;
+  font-size: 1px;
+  color: #8a8a8a;
   user-select: none;
-  display: none;
-  right: -110px;
-  top: 20px;
+  opacity: 0;
+  display: block;
+  right: -60px;
+  bottom: -20px;
   transition:  0.3s ease-in-out; /* Add a smooth transition */
   position: absolute;
-  width: 100px;
+  width: 200px;
+  font-weight: 100;
 }
 
   .link-preview {
@@ -865,21 +1091,22 @@ chat_title
   }
   /* width */
   ::-webkit-scrollbar {
+    background: var(--custom-scrollbar-track-color, #0000000f);
     height: 80%;
     width: 14px;
     z-index: 1000001;
   }
   
   /* Track */
-  ::-webkit-scrollbar-track {
-    background: #0000000f;
+::-webkit-scrollbar-track {
+    background: var(--custom-scrollbar-track-color, #0000000f);
     border-radius: 0px
   }
+
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #215eb9;
     border-radius: 6px;
-
+    background: var(--custom-scrollbar-thumb-color, #215eb9);
   }
 
  
