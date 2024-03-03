@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", function() {
   // Get the close button and advertisement elements
   var closeBtn = document.getElementById("closeBtn");
@@ -25,6 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {
       }
   }, 46); // Adjust the speed of the progress bar here
 }); 
+
+
 
 document.addEventListener('contextmenu',
 event => event.preventDefault());
@@ -133,7 +143,7 @@ window.onload = function() {
       
         var join_input = document.createElement('input');
         join_input.setAttribute('id', 'join_input');
-        join_input.setAttribute('maxlength', 15);
+        join_input.setAttribute('maxlength', 7);
         join_input.placeholder = 'Your name';
       
         var password_input_container = document.createElement('div');
@@ -162,12 +172,13 @@ window.onload = function() {
             join_button.onclick = function () {
               parent.save_name(join_input.value);
               join_container.remove();
-              parent.create_chat();
+              //parent.create_chat();
+              window.location.reload();
             };
           } else {
             join_button.classList.remove('enabled');
             join_button.onclick = null;
-          }
+          } 
         }
       
         // Attach event listeners for input changes
@@ -182,13 +193,7 @@ window.onload = function() {
         join_container.append(join_inner_container);
         document.body.append(join_container);
       
-        function requestNotificationPermission() {
-          Notification.requestPermission().then((permission) => {
-            if (permission === 'granted') {
-              // User has granted permission
-            }
-          });
-        }
+
       }
       
       // create_load() creates a loading circle that is used in the chat container
@@ -233,6 +238,220 @@ window.onload = function() {
         var chat_input_container = document.createElement('div')
         chat_input_container.setAttribute('id', 'chat_input_container')
   
+        var chat_settings = document.createElement('button')
+        chat_settings.setAttribute('id', 'chat_settings')
+        chat_settings.innerHTML = `<i class="fa-solid fa-sliders"></i>`
+
+        var sidebar = document.getElementById('sidebar');
+        chat_settings.addEventListener('click', function() {
+          if (sidebar.style.width === '80px') {
+            sidebar.style.width = '0';
+            sidebar.style.transition = '0.6s ease';
+            sidebar.style.opacity = '0';
+            sidebar.style.right = '-100px';
+            sidebar.style.zIndex = '1000';
+            chat_settings.style.right = '25px';
+            chat_settings.style.transition = '0.6s ease';
+            chat_settings.style.backgroundColor = '#ffffff';
+            chat_settings.style.color = '#000000';
+            chat_settings.innerHTML = `<i class="fa-solid fa-sliders"></i>`;
+          } else {
+            sidebar.style.width = '80px';
+            sidebar.style.transition = '0.6s ease';
+            sidebar.style.opacity = '1';
+            sidebar.style.right = '14px';
+            sidebar.style.zIndex = '1000';
+            chat_settings.style.right = '70px';
+            chat_settings.style.transition = '0.6s ease';
+            chat_settings.style.backgroundColor = '#ffffff';
+            chat_settings.style.color = '#000000';
+            chat_settings.innerHTML = `<i class="fa-solid fa-chevron-right"></i>`
+          }
+        });
+
+
+        var meet = document.getElementById('meet');
+        var isMeet = true;
+
+        meet.addEventListener('click', function() {
+          if (isMeet) {
+            window.open('https://meet.google.com/sww-jszj-tjs', '_myMeeting');
+            isMeet = false; // Update the state
+          } else {
+            isMeet = true;
+          }
+        });
+
+        var overlay = document.getElementById('overlay');
+        var spotify = document.getElementById('spotify');
+        var music = document.getElementById('music');
+        var isMusic = true;
+
+        music.addEventListener('click', function() {
+          if (isMusic) {
+            if (forms.style.display === 'block') {
+              spotify.style.display = 'none';
+              chat_input.style.display = 'none';
+              chat_input_send.style.display = 'none';
+              overlay.style.display = 'block';
+            } else {
+              spotify.style.display = 'block';
+              spotify.style.opacity = '1';
+              spotify.style.top = '50%';
+              overlay.style.display = 'block';
+              sidebar.style.marginRight = '-14px';
+              sidebar.style.paddingLeft = '28px';
+              chat_settings.style.marginRight = '-14px';
+              chat_input.style.display = 'none';
+              chat_input_send.style.display = 'none';
+              isMusic = false; // Update the state
+            };
+          } else {
+            spotify.style.display = 'none';
+            spotify.style.opacity = '0';
+            spotify.style.top = '0';
+            overlay.style.display = 'none';
+            sidebar.style.marginRight = '0';
+            sidebar.style.paddingLeft = '35px';
+            chat_settings.style.marginRight = '0';
+            chat_input.style.display = 'block';
+            chat_input_send.style.display = 'block';
+            isMusic = true;
+          }
+        });
+
+        // Get all playlist divs
+var playlists = document.getElementsByClassName('spotify')[0].getElementsByClassName('playlist');
+
+// Get all buttons
+var btnPlaylist1 = document.getElementById('btn_playlist_1');
+var btnPlaylist2 = document.getElementById('btn_playlist_2');
+var btnPlaylist3 = document.getElementById('btn_playlist_3');
+
+// Add click event listeners to the buttons
+btnPlaylist1.addEventListener('click', function() {
+    document.getElementById('playlist_1').style.display = 'block';
+    document.getElementById('playlist_2').style.display = 'none';
+    document.getElementById('playlist_3').style.display = 'none';
+
+    btnPlaylist1.style.fontWeight = '700';
+    btnPlaylist2.style.fontWeight = '100';
+    btnPlaylist3.style.fontWeight = '100';
+});
+
+btnPlaylist2.addEventListener('click', function() {
+    document.getElementById('playlist_2').style.display = 'block';
+    document.getElementById('playlist_1').style.display = 'none';
+    document.getElementById('playlist_3').style.display = 'none';
+
+    btnPlaylist2.style.fontWeight = '700';
+    btnPlaylist1.style.fontWeight = '100';
+    btnPlaylist3.style.fontWeight = '100';
+});
+
+btnPlaylist3.addEventListener('click', function() {
+    document.getElementById('playlist_3').style.display = 'block';
+    document.getElementById('playlist_2').style.display = 'none';
+    document.getElementById('playlist_1').style.display = 'none';
+
+    btnPlaylist3.style.fontWeight = '700';
+    btnPlaylist2.style.fontWeight = '100';
+    btnPlaylist1.style.fontWeight = '100';
+});
+
+      
+
+        var forms = document.getElementById('forms');
+        var feedback = document.getElementById('feedback');
+        var isFeedback = true;
+
+        feedback.addEventListener('click', function() {
+          if (isFeedback) {
+            if (spotify.style.display === 'block') {
+              forms.style.display = 'none';
+              chat_input.style.display = 'none';
+              chat_input_send.style.display = 'none';
+              overlay.style.display = 'block';
+            } else {
+              forms.style.display = 'block';
+              forms.style.opacity = '1';
+              overlay.style.display = 'block';
+              chat_input.style.display = 'none';
+              chat_input_send.style.display = 'none';
+              chat_settings.style.marginRight = '-14px';
+              sidebar.style.marginRight = '-14px';
+              sidebar.style.paddingLeft = '28px';
+              isFeedback = false;
+            };
+          } else {
+            forms.style.display = 'none';
+            forms.style.opacity = '0';
+            overlay.style.display = 'none';
+            chat_input.style.display = 'block';
+            chat_input_send.style.display = 'block';
+            chat_settings.style.marginRight = '0';
+            sidebar.style.marginRight = '0';
+            sidebar.style.paddingLeft = '35px';
+            isFeedback = true;
+          }
+        })
+
+
+
+        var lightMode = document.getElementById('light_mode');
+        var isLightMode = true; // Variable to track current mode
+        
+        lightMode.addEventListener('click', function() {
+          if (isLightMode) {
+            // Apply dark mode styles
+            chat_container.style.backgroundColor = '#202020';
+            chat_settings.style.backgroundColor = '#ffffff';
+            chat_settings.style.color = '#000000';
+            chat_settings.style.fontSize = '17px';
+            sidebar.style.backgroundColor = '#000000';
+            sidebar.style.color = '#ffffff';
+            lightMode.style.color = '#ffffff';
+            lightMode.style.fontSize = '26px';
+            chat_input.style.color = '#ffffff';
+            chat_input.style.backgroundColor = '#303030';
+            chat_input.style.outline = '#474747 solid 1px';
+            chat_logout.style.backgroundColor = '#000000';
+            chat_logout.style.outline = '#ffffff';
+            chat_logout.style.color = '#ffffff';
+            document.documentElement.style.setProperty('--custom-scrollbar-track-color', '#000000');
+            document.documentElement.style.setProperty('--custom-scrollbar-thumb-color', '#4c81d0');
+            document.documentElement.style.setProperty('--message-container-background-color', '#383838');
+            document.documentElement.style.setProperty('--message-container-color', '#ffffff');
+            document.documentElement.style.setProperty('--message-user-color', '#4c81d0');
+            document.documentElement.style.setProperty('--chat-content-container-background-color', '#2e2e2e');
+            isLightMode = false; // Update mode
+          } else {
+            // Apply light mode styles
+            chat_container.style.backgroundColor = ''; // Revert to default
+            chat_settings.style.backgroundColor = '';
+            chat_settings.style.color = '';
+            chat_settings.style.fontSize = '';
+            sidebar.style.backgroundColor = '';
+            sidebar.style.color = '';
+            lightMode.style.color = '';
+            lightMode.style.fontSize = '';
+            chat_input.style.color = '';
+            chat_input.style.backgroundColor = '';
+            chat_input.style.outline = '';
+            chat_logout.style.backgroundColor = '';
+            chat_logout.style.outline = '';
+            chat_logout.style.color = '';
+            document.documentElement.style.setProperty('--custom-scrollbar-track-color', '');
+            document.documentElement.style.setProperty('--custom-scrollbar-thumb-color', '');
+            document.documentElement.style.setProperty('--message-container-background-color', '');
+            document.documentElement.style.setProperty('--message-container-color', '');
+            document.documentElement.style.setProperty('--message-user-color', '');
+            document.documentElement.style.setProperty('--chat-content-container-background-color', '');
+            isLightMode = true; // Update mode
+          }
+        });
+        
+        
         var chat_input_send = document.createElement('button')
         chat_input_send.setAttribute('id', 'chat_input_send')
         chat_input_send.setAttribute('disabled', true)
@@ -243,7 +462,7 @@ window.onload = function() {
         var chat_input = document.createElement('input')
         chat_input.setAttribute('id', 'chat_input')
         // Only a max message length of 1000
-        chat_input.setAttribute('maxlength', 600)
+        chat_input.setAttribute('maxlength', 3000)
         // Get the name of the user
         chat_input.placeholder = `${parent.get_name()}, join the conversation!`
         chat_input.onkeyup  = function(){
@@ -259,13 +478,13 @@ window.onload = function() {
               chat_input_send.classList.add('sent');
               chat_input_send.setAttribute('disabled', true);
               chat_input_send.classList.remove('enabled');
-              if(chat_input.value.length <= 0){
+              if(chat_input.value.trim().length <= 0 || chat_input.value.trim() === ''){
                 return
               }
               // Enable the loading circle in the 'chat_content_container'
               parent.create_load('chat_content_container');
               // Send the message. Pass in the chat_input.value
-              parent.send_message(chat_input.value)
+              parent.send_message(chat_input.value.trim())
               // Clear the chat input box
               chat_input.value = ''
               // Focus on the input just after
@@ -275,7 +494,11 @@ window.onload = function() {
             chat_input_send.classList.remove('enabled');
             chat_input_send.classList.remove('sent');
           }
+
+
         }
+        
+        
 
         chat_input.addEventListener('keypress', function(event) {
           if (event.key === 'Enter' && chat_input_send.classList.contains('enabled','sent')) {
@@ -298,9 +521,10 @@ window.onload = function() {
           // Go back to home page
           parent.home()
         }
-  
+        
+
         chat_logout_container.append(chat_logout)
-        chat_input_container.append(chat_input, chat_input_send)
+        chat_input_container.append(chat_input, chat_input_send, chat_settings)
         chat_inner_container.append(chat_content_container, chat_input_container, chat_logout_container)
         chat_container.append(chat_inner_container)
         document.body.append(chat_container)
@@ -629,4 +853,5 @@ window.onload = function() {
 
 
 
-  }
+
+  } 
